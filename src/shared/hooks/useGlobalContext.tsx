@@ -1,5 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 
+import { UserType } from '../../modules/login/types/UserType';
+
 type NotificationType = 'success' | 'info' | 'warning' | 'error';
 
 interface NotificationProps {
@@ -9,8 +11,8 @@ interface NotificationProps {
 }
 
 interface GlobalData {
-  accessToken?: string;
   notification?: NotificationProps;
+  user?: UserType;
 }
 
 interface GlobalContextProps {
@@ -37,13 +39,6 @@ export const GlobalProvider = ({ children }: GlobalProviderChildren) => {
 export const useGlobalContext = () => {
   const { globalData, setGlobalData } = useContext(GlobalContext);
 
-  const setAccessToken = (accessToken: string) => {
-    setGlobalData({
-      ...globalData,
-      accessToken,
-    });
-  };
-
   const setNotification = (message: string, type: NotificationType, description?: string) => {
     setGlobalData({
       ...globalData,
@@ -51,10 +46,19 @@ export const useGlobalContext = () => {
     });
   };
 
+  const setUser = (user: UserType) => {
+    setTimeout(() => {
+      setGlobalData({
+        ...globalData,
+        user,
+      });
+    }, 100);
+  };
+
   return {
     notification: globalData?.notification,
-    accessToken: globalData?.accessToken,
-    setAccessToken,
+    user: globalData?.user,
+    setUser,
     setNotification,
   };
 };
