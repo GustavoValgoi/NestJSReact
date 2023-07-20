@@ -5,8 +5,10 @@ import { MethodsEnum } from '../../enums/methos.enum';
 import { apiVendas } from '../../helpers/axios/axiosInstance';
 import { getAuthorizationToken } from './auth';
 
+export type MethodType = 'get' | 'post' | 'delete' | 'patch' | 'put';
+
 export default class ConnectionAPI {
-  static async call<T>(url: string, method: string, body?: unknown): Promise<T> {
+  static async call<T>(url: string, method: MethodType, body?: unknown): Promise<T> {
     const config: AxiosRequestConfig = {
       headers: {
         Authorization: `Bearer ${getAuthorizationToken()}`,
@@ -15,22 +17,18 @@ export default class ConnectionAPI {
     };
 
     switch (method) {
-      case MethodsEnum.GET:
-        return (await apiVendas.get<T>(url, config)).data;
-      case MethodsEnum.DELETE:
-        return (await apiVendas.delete<T>(url, config)).data;
       case MethodsEnum.POST:
-        return (await apiVendas.post<T>(url, body, config)).data;
       case MethodsEnum.PATCH:
-        return (await apiVendas.patch<T>(url, body, config)).data;
       case MethodsEnum.PUT:
-        return (await apiVendas.put<T>(url, body, config)).data;
+        return (await apiVendas[method]<T>(url, body, config)).data;
+      case MethodsEnum.GET:
+      case MethodsEnum.DELETE:
       default:
-        return (await apiVendas.put<T>(url, body, config)).data;
+        return (await apiVendas[method]<T>(url, config)).data;
     }
   }
 
-  static async connect<T>(url: string, method: string, body?: unknown): Promise<T> {
+  static async connect<T>(url: string, method: MethodType, body?: unknown): Promise<T> {
     return ConnectionAPI.call<T>(url, method, body).catch((error) => {
       if (error.response) {
         switch (error.response.status) {

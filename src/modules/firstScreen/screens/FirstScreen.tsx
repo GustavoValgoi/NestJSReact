@@ -7,14 +7,13 @@ import { ProductRoutesEnum } from '../../product/routes';
 
 const FirstScreen = () => {
   const navigate = useNavigate();
-
   const { user } = useGlobalContext();
 
   useEffect(() => {
     if (user) {
       navigate(ProductRoutesEnum.PRODUCT);
     }
-  }, []);
+  }, [user]);
 
   return <Spin />;
 };
