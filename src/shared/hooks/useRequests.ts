@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavigateFunction } from 'react-router-dom';
 
+import { FirstScreenRoutesEnum } from '../../modules/firstScreen/routes';
 import { AuthType } from '../../modules/login/types/AuthType';
-import { ProductRoutesEnum } from '../../modules/product/routes';
 import { ERROR_INVALID_PASSWORD } from '../constants/errorsStatus';
 import { URL_AUTH } from '../constants/urls';
 import { setAuthorizationToken } from '../functions/connection/auth';
@@ -41,8 +41,7 @@ export const useRequests = () => {
     return returnObject;
   };
 
-  const authRequest = async (body: unknown): Promise<void> => {
-    const navigate = useNavigate();
+  const authRequest = async (body: unknown, navigate: NavigateFunction): Promise<void> => {
     setLoading(true);
 
     await connectionAPIPost<AuthType>(URL_AUTH, body)
@@ -50,10 +49,12 @@ export const useRequests = () => {
         setUser(result.user);
         setAuthorizationToken(result.accessToken);
         setNotification('Login efetuado com sucesso.', 'success');
-        navigate(ProductRoutesEnum.PRODUCT);
+        navigate(FirstScreenRoutesEnum.FIRST_SCREEN);
+        return result;
       })
       .catch(() => {
         setNotification(ERROR_INVALID_PASSWORD, 'error');
+        return undefined;
       });
 
     setLoading(false);

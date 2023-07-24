@@ -1,6 +1,8 @@
 import { Divider } from 'antd';
 
 import Breadcrumb, { ListBreadCrumb } from '../components/breadcrumb/Breadcrumb';
+import Header from '../components/header/Header';
+import Menu from '../components/menu/Menu';
 import { ScreenContainer } from './screen.styles';
 
 interface ScreenProps {
@@ -10,15 +12,19 @@ interface ScreenProps {
 
 const Screen = ({ children, listBreadcrumb }: ScreenProps) => {
   return (
-    <ScreenContainer>
-      {listBreadcrumb && (
-        <>
-          <Breadcrumb listBreadcrumb={listBreadcrumb} />
-          <Divider />
-        </>
-      )}
-      {children}
-    </ScreenContainer>
+    <>
+      <Header />
+      <ScreenContainer>
+        <Menu />
+        {listBreadcrumb && (
+          <>
+            <Breadcrumb listBreadcrumb={listBreadcrumb} />
+            <Divider />
+          </>
+        )}
+        {children}
+      </ScreenContainer>
+    </>
   );
 };
 
