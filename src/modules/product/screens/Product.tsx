@@ -9,14 +9,15 @@ import Table from '../../../shared/components/table/Table';
 import { URL_PRODUCT } from '../../../shared/constants/urls';
 import { MethodsEnum } from '../../../shared/enums/methos.enum';
 import { convertNumberToNumber } from '../../../shared/functions/money';
-import { useDataContext } from '../../../shared/hooks/useDataContext';
 import { useRequests } from '../../../shared/hooks/useRequests';
 import Screen from '../../../shared/screen/Screen';
+import { Display } from '../../../shared/styles/display.styles';
+import { LimitedContainer } from '../../../shared/styles/limited.styles';
 import { ProductType } from '../../../shared/types/ProductType';
+import { useProductReducer } from '../../../store/reducers/productReducer/useProductReducer';
 import CategoryColumn from '../components/CategoryColumn';
 import TooltipImage from '../components/TooltipImage';
 import { ProductRoutesEnum } from '../routes';
-import { BoxButtons, LimitSize } from '../styles/product.styles';
 
 const columns: ColumnsType<ProductType> = [
   {
@@ -58,7 +59,7 @@ const breadcrumb: ListBreadCrumb[] = [
 
 const Product = () => {
   const [productsFiltered, setProductsFiltered] = useState<ProductType[]>([]);
-  const { products, setProducts } = useDataContext();
+  const { products, setProducts } = useProductReducer();
   const { request } = useRequests();
   const navigate = useNavigate();
 
@@ -80,16 +81,16 @@ const Product = () => {
 
   return (
     <Screen listBreadcrumb={breadcrumb}>
-      <BoxButtons>
-        <LimitSize $customWidth="500px">
+      <Display type="flex" justify="space-between" margin="16px 0">
+        <LimitedContainer width={500}>
           <Search placeholder="Buscar produto..." onSearch={handleSearch} enterButton />
-        </LimitSize>
-        <LimitSize>
+        </LimitedContainer>
+        <LimitedContainer width={200}>
           <Button type="primary" onClick={() => navigate(ProductRoutesEnum.PRODUCT_INSERT)}>
             Novo produto
           </Button>
-        </LimitSize>
-      </BoxButtons>
+        </LimitedContainer>
+      </Display>
       <Table columns={columns} dataSource={productsFiltered} />
     </Screen>
   );

@@ -5,6 +5,9 @@ interface DisplayProps {
   justify?: string;
   align?: string;
   direction?: string;
+  margin?: string;
+  padding?: string;
+  width?: string;
 }
 
 export const Display = styled.div<DisplayProps>`
@@ -24,5 +27,20 @@ export const Display = styled.div<DisplayProps>`
     props.direction &&
     css`
       flex-direction: ${props.direction};
+    `}
+  ${(props) =>
+    props.margin &&
+    css`
+      margin: ${props.margin};
+    `}
+  ${(props) =>
+    props.padding &&
+    css`
+      padding: ${props.padding};
+    `}
+  ${(props) =>
+    props.width &&
+    css`
+      width: ${props.width};
     `}
 `;

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { URL_PRODUCT } from '../../../shared/constants/urls';
 import { InsertProductDTO } from '../../../shared/dtos/InsertProduct.dto';
 import { connectionAPIPost } from '../../../shared/functions/connection/connectionAPI';
-import { useGlobalContext } from '../../../shared/hooks/useGlobalContext';
+import { useGlobalReducer } from '../../../store/reducers/globalReducer/useGlobalReducer';
 import { ProductRoutesEnum } from '../routes';
 
 export const useInsertProduct = () => {
@@ -18,7 +18,7 @@ export const useInsertProduct = () => {
     price: 0,
   });
 
-  const { setNotification } = useGlobalContext();
+  const { setNotification } = useGlobalReducer();
 
   useEffect(() => {
     if (product.name && product.image && product.categoryId && product.price > 0) {
