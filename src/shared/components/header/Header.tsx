@@ -3,16 +3,17 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { logout } from '../../functions/connection/auth';
+import { HeaderTestIdEnum } from './enums/headerTestId.enum';
 import { HeaderContainer, LogoutButton } from './header.styles';
 
 const Header = () => {
-  const [open, setOpen] = useState<boolean>(false);
   const navigate = useNavigate();
+  const [open, setOpen] = useState<boolean>(false);
 
   return (
-    <HeaderContainer>
-      <LogoutButton onClick={() => setOpen(true)} />
+    <>
       <Modal
+        data-testid={HeaderTestIdEnum.HEADER_MODAL}
         title="Sair do sistema"
         open={open}
         onOk={() => logout(navigate)}
@@ -20,9 +21,14 @@ const Header = () => {
         okText="Sair"
         cancelText="Cancelar"
       >
-        <p>Tem certeza que deseja sair do sistema ?</p>
+        <p data-testid={HeaderTestIdEnum.HEADER_MODAL_P}>
+          Tem certeza que deseja sair do sistema ?
+        </p>
       </Modal>
-    </HeaderContainer>
+      <HeaderContainer data-testid={HeaderTestIdEnum.HEADER_CONTAINER}>
+        <LogoutButton data-testid={HeaderTestIdEnum.HEADER_LOGO} onClick={() => setOpen(true)} />
+      </HeaderContainer>
+    </>
   );
 };
 

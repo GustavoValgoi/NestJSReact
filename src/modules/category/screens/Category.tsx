@@ -1,8 +1,7 @@
-import Search from 'antd/es/input/Search';
+import { Input } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { useNavigate } from 'react-router-dom';
 
-import { ListBreadCrumb } from '../../../shared/components/breadcrumb/Breadcrumb';
 import Button from '../../../shared/components/buttons/button/Button';
 import Table from '../../../shared/components/table/Table';
 import Screen from '../../../shared/screen/Screen';
@@ -12,6 +11,8 @@ import { CategoryType } from '../../../shared/types/CategoryType';
 import { FirstScreenRoutesEnum } from '../../firstScreen/routes';
 import { useCategory } from '../hooks/useCategory';
 import { CategoryRoutesEnum } from '../routes';
+
+const { Search } = Input;
 
 const columns: ColumnsType<CategoryType> = [
   {
@@ -35,22 +36,22 @@ const columns: ColumnsType<CategoryType> = [
   },
 ];
 
-const breadcrumb: ListBreadCrumb[] = [
-  {
-    name: 'Home',
-    navigateTo: FirstScreenRoutesEnum.FIRST_SCREEN,
-  },
-  {
-    name: 'Categorias',
-  },
-];
-
 const Category = () => {
   const { categories, handleSearch } = useCategory();
   const navigate = useNavigate();
 
   return (
-    <Screen listBreadcrumb={breadcrumb}>
+    <Screen
+      listBreadcrumb={[
+        {
+          name: 'Home',
+          navigateTo: FirstScreenRoutesEnum.FIRST_SCREEN,
+        },
+        {
+          name: 'Categorias',
+        },
+      ]}
+    >
       <Display type="flex" justify="space-between" margin="16px 0">
         <LimitedContainer width={500}>
           <Search placeholder="Buscar categoria..." onSearch={handleSearch} enterButton />

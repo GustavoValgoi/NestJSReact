@@ -5,8 +5,7 @@ import {
   SafetyCertificateOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-import { Menu as MenuAntd } from 'antd';
+import { Menu as MenuAntd, MenuProps } from 'antd';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

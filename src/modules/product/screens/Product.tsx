@@ -1,9 +1,8 @@
-import Search from 'antd/es/input/Search';
-import type { ColumnsType } from 'antd/es/table';
+import { Input } from 'antd';
+import { ColumnsType } from 'antd/es/table';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ListBreadCrumb } from '../../../shared/components/breadcrumb/Breadcrumb';
 import Button from '../../../shared/components/buttons/button/Button';
 import Table from '../../../shared/components/table/Table';
 import { URL_PRODUCT } from '../../../shared/constants/urls';
@@ -18,6 +17,8 @@ import { useProductReducer } from '../../../store/reducers/productReducer/usePro
 import CategoryColumn from '../components/CategoryColumn';
 import TooltipImage from '../components/TooltipImage';
 import { ProductRoutesEnum } from '../routes';
+
+const { Search } = Input;
 
 const columns: ColumnsType<ProductType> = [
   {
@@ -47,16 +48,6 @@ const columns: ColumnsType<ProductType> = [
   },
 ];
 
-const breadcrumb: ListBreadCrumb[] = [
-  {
-    name: 'Home',
-    navigateTo: '/',
-  },
-  {
-    name: 'Produtos',
-  },
-];
-
 const Product = () => {
   const [productsFiltered, setProductsFiltered] = useState<ProductType[]>([]);
   const { products, setProducts } = useProductReducer();
@@ -80,7 +71,17 @@ const Product = () => {
   };
 
   return (
-    <Screen listBreadcrumb={breadcrumb}>
+    <Screen
+      listBreadcrumb={[
+        {
+          name: 'Home',
+          navigateTo: '/',
+        },
+        {
+          name: 'Produtos',
+        },
+      ]}
+    >
       <Display type="flex" justify="space-between" margin="16px 0">
         <LimitedContainer width={500}>
           <Search placeholder="Buscar produto..." onSearch={handleSearch} enterButton />

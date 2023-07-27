@@ -1,4 +1,4 @@
-import { Router as RemixRouter } from '@remix-run/router';
+import type { Router as RemixRouter } from '@remix-run/router';
 import { useEffect } from 'react';
 import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-dom';
 

@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 
-import { ListBreadCrumb } from '../../../shared/components/breadcrumb/Breadcrumb';
 import Button from '../../../shared/components/buttons/button/Button';
 import Input from '../../../shared/components/inputs/input/Input';
 import InputMoney from '../../../shared/components/inputs/inputMoney/InputMoney';
@@ -9,9 +8,9 @@ import Screen from '../../../shared/screen/Screen';
 import { Display } from '../../../shared/styles/display.styles';
 import { LimitedContainer } from '../../../shared/styles/limited.styles';
 import { useCategory } from '../../category/hooks/useCategory';
+import { ProductInsertTestIdEnum } from '../enums/productInsertTestId.enum';
 import { useInsertProduct } from '../hooks/useInsertProduct';
 import { ProductRoutesEnum } from '../routes';
-import { ProductInsertContainer } from '../styles/productInsert.styles';
 
 const ProductInsert = () => {
   const navigate = useNavigate();
@@ -19,25 +18,31 @@ const ProductInsert = () => {
   const { loading, product, disabledButton, handleSelect, handleSubmit, setProduct } =
     useInsertProduct();
 
-  const breadcrumb: ListBreadCrumb[] = [
-    {
-      name: 'Home',
-      navigateTo: '/',
-    },
-    {
-      name: 'Produtos',
-      navigateTo: ProductRoutesEnum.PRODUCT,
-    },
-    {
-      name: 'Inserir Produto',
-    },
-  ];
-
   return (
-    <Screen listBreadcrumb={breadcrumb}>
-      <ProductInsertContainer>
+    <Screen
+      listBreadcrumb={[
+        {
+          name: 'Home',
+          navigateTo: '/',
+        },
+        {
+          name: 'Produtos',
+          navigateTo: ProductRoutesEnum.PRODUCT,
+        },
+        {
+          name: 'Inserir Produto',
+        },
+      ]}
+    >
+      <Display
+        data-testid={ProductInsertTestIdEnum.PRODUCT_INSERT_CONTAINER}
+        type="flex"
+        justify="center"
+        width="100%"
+      >
         <LimitedContainer width={400}>
           <Input
+            data-testid={ProductInsertTestIdEnum.PRODUCT_INSERT_INPUT_NAME}
             margin="0 0 15px"
             title="Nome"
             placeholder="Nome"
@@ -45,6 +50,7 @@ const ProductInsert = () => {
             onChange={(e) => setProduct({ ...product, name: e.target.value })}
           />
           <Input
+            data-testid={ProductInsertTestIdEnum.PRODUCT_INSERT_INPUT_IMAGE}
             margin="0 0 15px"
             title="Url Imagem"
             placeholder="Url imagem"
@@ -52,6 +58,7 @@ const ProductInsert = () => {
             onChange={(e) => setProduct({ ...product, image: e.target.value })}
           />
           <InputMoney
+            data-testid={ProductInsertTestIdEnum.PRODUCT_INSERT_INPUT_PRICE}
             margin="0 0 15px"
             title="Preço"
             placeholder="Preço"
@@ -59,6 +66,7 @@ const ProductInsert = () => {
             onChange={(e) => setProduct({ ...product, price: Number(e.target.value) })}
           />
           <Select
+            data-testid={ProductInsertTestIdEnum.PRODUCT_INSERT_INPUT_SELECT}
             title="Categoria"
             margin="0 0 32px"
             defaultValue="Selecione uma categoria"
@@ -70,12 +78,17 @@ const ProductInsert = () => {
           />
           <Display type="flex" justify="right">
             <LimitedContainer width={120} margin="0 10px 0">
-              <Button danger onClick={() => navigate(ProductRoutesEnum.PRODUCT)}>
+              <Button
+                data-testid={ProductInsertTestIdEnum.PRODUCT_INSERT_BUTTON_CANCEL}
+                danger
+                onClick={() => navigate(ProductRoutesEnum.PRODUCT)}
+              >
                 Cancelar
               </Button>
             </LimitedContainer>
             <LimitedContainer width={120}>
               <Button
+                data-testid={ProductInsertTestIdEnum.PRODUCT_INSERT_BUTTON_INSERT}
                 loading={loading}
                 disabled={disabledButton}
                 type="primary"
@@ -86,7 +99,7 @@ const ProductInsert = () => {
             </LimitedContainer>
           </Display>
         </LimitedContainer>
-      </ProductInsertContainer>
+      </Display>
     </Screen>
   );
 };

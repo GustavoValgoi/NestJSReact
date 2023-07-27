@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 
-import { ListBreadCrumb } from '../../../shared/components/breadcrumb/Breadcrumb';
 import Button from '../../../shared/components/buttons/button/Button';
 import Input from '../../../shared/components/inputs/input/Input';
 import Screen from '../../../shared/screen/Screen';
@@ -13,21 +12,22 @@ const CategoryInsert = () => {
   const { category, setCategory, loading, disabledButton, handleSubmit } = useInsertCategory();
   const navigate = useNavigate();
 
-  const breadcrumb: ListBreadCrumb[] = [
-    {
-      name: 'Home',
-      navigateTo: '/',
-    },
-    {
-      name: 'Categorias',
-      navigateTo: CategoryRoutesEnum.CATEGORY,
-    },
-    {
-      name: 'Inserir Categoria',
-    },
-  ];
   return (
-    <Screen listBreadcrumb={breadcrumb}>
+    <Screen
+      listBreadcrumb={[
+        {
+          name: 'Home',
+          navigateTo: '/',
+        },
+        {
+          name: 'Categorias',
+          navigateTo: CategoryRoutesEnum.CATEGORY,
+        },
+        {
+          name: 'Inserir Categoria',
+        },
+      ]}
+    >
       <Display type="flex" justify="center" width="100%">
         <LimitedContainer width={400}>
           <Input
