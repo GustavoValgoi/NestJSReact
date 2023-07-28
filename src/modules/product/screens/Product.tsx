@@ -7,7 +7,7 @@ import Button from '../../../shared/components/buttons/button/Button';
 import Table from '../../../shared/components/table/Table';
 import { URL_PRODUCT } from '../../../shared/constants/urls';
 import { MethodsEnum } from '../../../shared/enums/methos.enum';
-import { convertNumberToNumber } from '../../../shared/functions/money';
+import { convertNumberToMoney } from '../../../shared/functions/money';
 import { useRequests } from '../../../shared/hooks/useRequests';
 import Screen from '../../../shared/screen/Screen';
 import { Display } from '../../../shared/styles/display.styles';
@@ -44,7 +44,7 @@ const columns: ColumnsType<ProductType> = [
     title: 'Preço',
     dataIndex: 'price',
     key: 'price',
-    render: (_, product) => <a>{convertNumberToNumber(product.price)}</a>,
+    render: (_, product) => <a>{convertNumberToMoney(product.price)}</a>,
   },
 ];
 

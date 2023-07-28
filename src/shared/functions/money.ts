@@ -1,4 +1,4 @@
-export const convertNumberToNumber = (value: number): string => {
+export const convertNumberToMoney = (value: number): string => {
   return value.toLocaleString('pt-BR', {
     style: 'currency',
     currency: 'BRL',
