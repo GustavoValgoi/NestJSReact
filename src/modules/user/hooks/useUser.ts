@@ -31,5 +31,5 @@ export const useUser = () => {
     }
   };
 
-  return { users: usersFiltered, loading, handleSearch };
+  return { users: usersFiltered, loading, handleSearch, setUsers };
 };

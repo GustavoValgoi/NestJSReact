@@ -1,3 +1,4 @@
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { useNavigate } from 'react-router-dom';
@@ -33,6 +34,29 @@ const columns: ColumnsType<CategoryType> = [
     dataIndex: 'amountProduct',
     key: 'amountProduct',
     render: (text) => <a>{text}</a>,
+  },
+  {
+    title: 'Ações',
+    dataIndex: 'actions',
+    key: 'actions',
+    render: (_, category) => (
+      <>
+        <Button
+          margin="0 5px 0 0"
+          type="primary"
+          onClick={() => console.log('Edit: ' + category.id)}
+          icon={<EditOutlined />}
+          size="middle"
+        />
+        <Button
+          type="primary"
+          danger
+          onClick={() => console.log('Delete: ' + category.id)}
+          icon={<DeleteOutlined />}
+          size="middle"
+        />
+      </>
+    ),
   },
 ];
 

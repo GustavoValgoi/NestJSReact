@@ -1,10 +1,13 @@
 import { Input } from 'antd';
 import { ColumnsType } from 'antd/es/table';
+import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../../../shared/components/buttons/button/Button';
 import Loading from '../../../shared/components/loading/Loading';
 import Table from '../../../shared/components/table/Table';
+import { UserTypeEnum } from '../../../shared/enums/user-type.enum';
+import { getUserInfoByToken } from '../../../shared/functions/connection/auth';
 import { insertMaskInCPF } from '../../../shared/functions/cpf';
 import { insertMaskInPhone } from '../../../shared/functions/phone';
 import Screen from '../../../shared/screen/Screen';
@@ -53,6 +56,9 @@ const columns: ColumnsType<UserType> = [
 const User = () => {
   const { users, loading, handleSearch } = useUser();
   const navigate = useNavigate();
+  const userToken = useMemo(() => getUserInfoByToken(), []);
+
+  console.log(userToken);
 
   return (
     <Screen
@@ -77,9 +83,11 @@ const User = () => {
               <Search placeholder="Buscar produto..." onSearch={handleSearch} enterButton />
             </LimitedContainer>
             <LimitedContainer width={200}>
-              <Button type="primary" onClick={() => navigate(UserRoutesEnum.USER_INSERT)}>
-                Novo usuário
-              </Button>
+              {userToken && userToken.typeUser === UserTypeEnum.Root && (
+                <Button type="primary" onClick={() => navigate(UserRoutesEnum.USER_INSERT)}>
+                  Novo ADM
+                </Button>
+              )}
             </LimitedContainer>
           </Display>
           <Table columns={columns} dataSource={users} />

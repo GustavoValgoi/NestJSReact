@@ -6,4 +6,9 @@ export interface ProductType {
   image: string;
   price: number;
   category?: CategoryType;
+  weight: number;
+  height: number;
+  pLength: number;
+  diameter: number;
+  width: number;
 }

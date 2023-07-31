@@ -1,4 +1,5 @@
 export const URL_USER = '/user';
+export const URL_USER_ADMIN = '/user/admin';
 export const URL_USER_ID = '/user/{userId}';
 export const URL_USER_ALL = '/user/all';
 

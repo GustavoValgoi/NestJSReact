@@ -30,6 +30,7 @@ const Menu = () => {
       key: 'home',
       label: 'Principal',
       icon: <HomeOutlined />,
+      onClick: () => navigate('/'),
     },
     {
       key: 'products',
