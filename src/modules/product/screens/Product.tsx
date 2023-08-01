@@ -97,14 +97,14 @@ const Product = () => {
       ]}
     >
       <Modal
-        title="Sair do sistema"
+        title="Exclusão de produto"
         open={openModalDelete}
         onOk={handleDeleteProduct}
         onCancel={handleCloseModalDelete}
-        okText="Sair"
+        okText="Sim"
         cancelText="Cancelar"
       >
-        <p>Tem certeza que deseja sair do sistema ?</p>
+        <p>Tem certeza que deseja excluir esse produto ?</p>
       </Modal>
       <Display type="flex" justify="space-between" margin="16px 0">
         <LimitedContainer width={500}>

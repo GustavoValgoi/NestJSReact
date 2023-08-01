@@ -1,6 +1,8 @@
 import { Breadcrumb as BreadcrumbAntd } from 'antd';
 import { Link } from 'react-router-dom';
 
+import { BreadcrumbTestEnum } from './__tests__/Breadcrumb.spec';
+
 export interface ListBreadCrumb {
   name: string;
   navigateTo?: string;
@@ -19,7 +21,7 @@ const Breadcrumb = ({ listBreadcrumb }: BreadcrumbProps) => {
     ),
   }));
 
-  return <BreadcrumbAntd items={itemsBreadcrumb} />;
+  return <BreadcrumbAntd data-testid={BreadcrumbTestEnum.CONTAINER} items={itemsBreadcrumb} />;
 };
 
 export default Breadcrumb;

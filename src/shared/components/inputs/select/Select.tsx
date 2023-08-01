@@ -1,5 +1,6 @@
 import { Select as SelectAntd, SelectProps as SelectPropsAntd } from 'antd';
 
+import { SelectTestIdEnum } from './__tests__/Select.spec';
 import { BoxSelect, TitleSelect } from './select.styles';
 
 interface SelectProps extends SelectPropsAntd {
@@ -9,9 +10,9 @@ interface SelectProps extends SelectPropsAntd {
 
 const Select = ({ title, margin, ...props }: SelectProps) => {
   return (
-    <BoxSelect style={{ margin }}>
-      {title && <TitleSelect>{title}</TitleSelect>}
-      <SelectAntd style={{ width: '100%' }} {...props} />
+    <BoxSelect data-testid={SelectTestIdEnum.BOX_SELECT} style={{ margin }}>
+      {title && <TitleSelect data-testid={SelectTestIdEnum.TITLE}>{title}</TitleSelect>}
+      <SelectAntd data-testid={SelectTestIdEnum.SELECT_ANTD} style={{ width: '100%' }} {...props} />
     </BoxSelect>
   );
 };
