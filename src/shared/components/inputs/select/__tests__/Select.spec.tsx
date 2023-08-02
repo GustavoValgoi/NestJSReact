@@ -1,12 +1,7 @@
 import { render } from '@testing-library/react';
 
+import { SelectTestIdEnum } from '../enums/SelectTestIdEnum';
 import Select from '../Select';
-
-export enum SelectTestIdEnum {
-  BOX_SELECT = 'BOX_SELECT',
-  SELECT_ANTD = 'SELECT_ANTD',
-  TITLE = 'TITLE',
-}
 
 describe('test Select', () => {
   it('should render select', () => {

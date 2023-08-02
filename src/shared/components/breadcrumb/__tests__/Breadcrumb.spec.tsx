@@ -1,10 +1,7 @@
 import { render } from '@testing-library/react';
 
 import Breadcrumb from '../Breadcrumb';
-
-export enum BreadcrumbTestEnum {
-  CONTAINER = 'CONTAINER',
-}
+import { BreadcrumbTestEnum } from '../enums/BreadcrumbTestEnum';
 
 jest.mock('react-router-dom');
 

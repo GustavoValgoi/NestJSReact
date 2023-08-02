@@ -1,10 +1,7 @@
 import { render } from '@testing-library/react';
 
+import { LoadingTestIdEnum } from '../enums/LoadingTestIdEnum';
 import Loading from '../Loading';
-
-export enum LoadingTestIdEnum {
-  LOADING = 'LOADING',
-}
 
 describe('test Loading', () => {
   it('should render select', () => {

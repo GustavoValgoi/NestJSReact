@@ -1,6 +1,6 @@
 import { Tooltip as TooltipAntd } from 'antd';
 
-import { TooltipTestIds } from './__tests__/Tooltip.spec';
+import { TooltipTestIds } from './enums/TooltipTestIdEnum';
 import { ContainerExternal, ContainerTooltip } from './tooltip.styles';
 
 interface TooltipProps {

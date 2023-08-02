@@ -1,12 +1,7 @@
 import { render } from '@testing-library/react';
 
+import { TooltipTestIds } from '../enums/TooltipTestIdEnum';
 import Tooltip from '../Tooltip';
-
-export enum TooltipTestIds {
-  CONTAINER_TOOLTIP = 'CONTAINER_TOOLTIP',
-  INFO_TOOLTIP = 'INFO_TOOLTIP',
-  ANTD_TOOLTIP = 'ANTD_TOOLTIP',
-}
 
 const mockChildren = 'mockChildren';
 const mockTitle = 'mockTitle';

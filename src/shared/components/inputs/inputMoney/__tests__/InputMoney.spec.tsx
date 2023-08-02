@@ -1,10 +1,8 @@
 import { fireEvent, render } from '@testing-library/react';
 
+import { InputMoneyTestId } from '../enums/InputMoneyTestIdEnum';
 import InputMoney from '../InputMoney';
 
-export enum InputMoneyTestId {
-  INPUT = 'INPUT',
-}
 describe('test InputMoney', () => {
   it('should render input', () => {
     const mockOnChange = jest.fn();

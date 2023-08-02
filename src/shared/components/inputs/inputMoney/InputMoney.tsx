@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import Input, { InputProps } from '../input/Input';
-import { InputMoneyTestId } from './__tests__/InputMoney.spec';
+import { InputMoneyTestId } from './enums/InputMoneyTestIdEnum';
 
 interface InputMoneyProps extends InputProps {
   value: number;

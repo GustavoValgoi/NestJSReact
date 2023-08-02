@@ -1,6 +1,6 @@
 import { Select as SelectAntd, SelectProps as SelectPropsAntd } from 'antd';
 
-import { SelectTestIdEnum } from './__tests__/Select.spec';
+import { SelectTestIdEnum } from './enums/SelectTestIdEnum';
 import { BoxSelect, TitleSelect } from './select.styles';
 
 interface SelectProps extends SelectPropsAntd {
